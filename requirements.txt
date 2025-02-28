@@ -1,1 +1,3 @@
 hypermind @ file:///home/bob/hypermind-ed-10.tar
+git+https://github.com/hayotensor/subnet-llm-template
+datasets

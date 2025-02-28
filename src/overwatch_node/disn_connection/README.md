@@ -1,0 +1,1 @@
+A connector protocol for connecting to the Hypertensor DiSN standard
