@@ -1,0 +1,1 @@
+hypermind @ file:///home/bob/hypermind-ed-10.tar
