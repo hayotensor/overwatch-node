@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence
 
 
 @dataclass
@@ -40,4 +40,5 @@ class ModelConfig:
     frontend: ModelFrontendConfig
     chat: ModelChatConfig
     substrate: SubstrateConfig
+    bootstrap_peers: List
 

@@ -1,11 +1,11 @@
 from benchmark_manager import BenchmarkManager
 
-# Mock AI Model
 class MockModel:
     def generate(self, prompt):
         return f"Generated response for: {prompt}"
 
-if __name__ == "__main__":
+def run_benchmarks():
+    subnets = []
     model = MockModel()
     benchmark_manager = BenchmarkManager(model)
     results = benchmark_manager.run_all(num_samples=5)
@@ -14,3 +14,6 @@ if __name__ == "__main__":
         print(f"\nResults for {benchmark}:")
         for entry in result:
             print(entry)
+
+if __name__ == "__main__":
+    run_benchmarks()

@@ -1,9 +1,5 @@
 from typing import Dict, List, Tuple, Union
 
-from hypermind.proto import crypto_pb2
-from hypermind.utils.crypto import Ed25519PrivateKey
-from cryptography.hazmat.primitives.asymmetric import ed25519
-
 import torch
 from subnet import AutoDistributedModelForCausalLM
 from transformers import AutoTokenizer, PreTrainedModel, PreTrainedTokenizer
@@ -30,6 +26,7 @@ def load_models() -> Dict[str, Tuple[PreTrainedModel, PreTrainedTokenizer, Model
         for model_config in family:
             backend_config = model_config.backend
             subnet_id = model_config.substrate.subnet_id
+            boostrap_peers = model_config.boostrap_peers
 
             logger.info(f"Loading tokenizer for {backend_config.repository}")
             tokenizer = AutoTokenizer.from_pretrained(
@@ -47,7 +44,7 @@ def load_models() -> Dict[str, Tuple[PreTrainedModel, PreTrainedTokenizer, Model
                 backend_config.repository,
                 active_adapter=backend_config.adapter,
                 torch_dtype=config.TORCH_DTYPE,
-                initial_peers=config.INITIAL_PEERS,
+                initial_peers=boostrap_peers,
                 max_retries=3,
                 subnet_id=subnet_id,
                 identity_path=PRIVATE_KEY_PATH,
